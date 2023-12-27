@@ -1,4 +1,11 @@
-// {{## BEGIN extension-fun ##}}
+// {{## BEGIN extension-method ##}}
+fun String.toSwedish() : String {
+    return "Fur de fur de floop floop floop"
+}
+val message = "Hello world!"
+println(message)
+println(message.toSwedish())
+
 fun MutableList<Int>.swap(index1: Int, index2: Int) {
     val tmp = this[index1] // 'this' corresponds to the list
     this[index1] = this[index2]
@@ -7,7 +14,8 @@ fun MutableList<Int>.swap(index1: Int, index2: Int) {
 
 val l = mutableListOf(1, 2, 3)
 l.swap(0, 2) // 'this' inside 'swap()' will hold the value of 'l'
-// {{## END extension-fun ##}}
+// {{## END extension-method ##}}
+
 
 // {{## BEGIN extension-prop ##}}
 val <T> List<T>.lastIndex: Int

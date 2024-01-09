@@ -1,15 +1,15 @@
+println("Entering when")
 // {{## BEGIN basic ##}}
 val x = 2
 when (x) {
-  1 -> print("x == 1")
-  2 -> print("x == 2")
+  1 -> println("x == 1")
+  2 -> println("x == 2")
   else -> { // Note the block
-    print("x is neither 1 nor 2")
+    println("x is neither 1 nor 2")
   }
 }
 // {{## END basic ##}}
 
-val s = "Fred";
 val y = "Fred Flintstone"
 
 fun parseInt(s: String):Int {
@@ -17,18 +17,20 @@ fun parseInt(s: String):Int {
 }
 
 // {{## BEGIN complex ##}}
+val s = "Fred";
 val validNumbers = 1..10
 when (x) {
-  0, 1 -> print("x == 0 or x == 1")
-  parseInt(s) -> print("s encodes x")
-  in 1..10 -> print("x is in the range")
-  in validNumbers -> print("x is valid")
-  !in 10..20 -> print("x is outside the range")
-  else -> print("otherwise")
+  0, 1 -> println("x == 0 or x == 1")
+  parseInt(s) -> println("s encodes x")
+  in 1..10 -> println("x is in the range")
+  in validNumbers -> println("x is valid")
+  !in 10..20 -> println("x is outside the range")
+  else -> println("otherwise")
 }
 
 val hasPrefix = when(y) {
   is String -> y.startsWith("prefix")
   else -> false
 }
+print(hasPrefix)
 // {{## END complex ##}}

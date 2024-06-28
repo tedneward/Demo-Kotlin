@@ -1,6 +1,7 @@
 import kotlin.properties.Delegates
 import kotlin.reflect.*
 
+// {{## BEGIN delegate-type-basics ##}}
 class Delegate {
   operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
     return "$thisRef, thank you for delegating '${property.name}' to me!"
@@ -10,7 +11,11 @@ class Delegate {
     println("$value has been assigned to '${property.name} in $thisRef.'")
   }
 }
+// {{## END delegate-type-basics ##}}
 
+fun main(args: Array<String>) {
+
+// {{## BEGIN delegate-type-usage ##}}
 class Example {
   var p: String by Delegate()
 }
@@ -18,6 +23,7 @@ class Example {
 val e = Example()
 e.p = "NEW"
 println(e.p)
+// {{## END delegate-type-usage ##}}
 
 // {{## BEGIN lazy ##}}
 class Container {
@@ -53,7 +59,10 @@ val person = Person(mapOf(
     "name" to "John Doe",
     "age"  to 25
 ))
+
 println(person.name)
 println(person.age)
 println(person.map)
 // {{## END map ##}}
+
+}

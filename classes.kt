@@ -84,15 +84,10 @@ class Matrix(var number : Int) {
 }
 // {{## END infix-decl ##}}
 
-/*
 // {{## BEGIN data ##}}
-data class Money(var amount: Int, val type: String)
-val salary = Money(100000, "USD")
-println("Your salary is ${salary.type}${salary.amount}")
-val euroSalary = salary.copy(type = "EUR")
-println("In Europe, you would make ${euroSalary}")
+data class Currency(var amount: Int, val type: String)
+    // Implicitly has toString(), hashCode(), equals(), and copy()
 // {{## END data ##}}
-*/
 
 // {{## BEGIN sealed-decl ##}}
 sealed class Expr {
@@ -146,5 +141,16 @@ m = m rotate 5
 val expr = Expr.Sum(Expr.Const(2.0), Expr.Const(2.0))
 println("${expr.e1} + ${expr.e2} = ${eval(expr)}") // 4.0
 // {{## END sealed-usage ##}}
+
+// {{## BEGIN use-data ##}}
+val yourSalary = Currency(100000, "USD")
+println("Your salary is ${yourSalary.type}${yourSalary.amount}")
+val mySalary = Currency(100000, "USD")
+if yourSalary == mySalary {
+    println("We are peers")
+}
+val euroSalary = salary.copy(type = "EUR")
+println("In Europe, you would make ${euroSalary}")
+// {{## END use-data ##}}
 
 }

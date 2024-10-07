@@ -1,3 +1,31 @@
+// {{## BEGIN casts-1 ##}}
+open class Mammal
+
+class Human(val name : String = "Fred") : Mammal()
+class Bear() : Mammal()
+
+fun offerBeer(body : Mammal) {
+  if (body is Human)
+    println("Here, have a beer, ${body.name}")
+}
+val human = Human("Ted")
+val bear = Bear()
+offerBeer(human)
+offerBeer(bear) // Exception!
+// {{## END casts-1 ##}}
+
+// {{## BEGIN casts-2 ##}}
+fun offerWhiskey(body : Mammal) {
+  body as Human 
+}
+offerWhiskey(human)
+//offerWhiskey(bear)
+  /*
+  Exception! java.lang.ClassCastException: class Inheritance$Bear cannot be cast to class Inheritance$Human
+   */
+// {{## END casts-2 ##}}
+
+
 // {{## BEGIN properties ##}}
 open class Person(val firstName: String, val lastName: String, val age: Int)
 {

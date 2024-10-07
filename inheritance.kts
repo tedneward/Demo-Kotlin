@@ -5,20 +5,26 @@ class Human(val name : String = "Fred") : Mammal()
 class Bear() : Mammal()
 
 fun offerBeer(body : Mammal) {
-  if (body is Human)
+  if (body is Human) {
     println("Here, have a beer, ${body.name}")
+      // Notice the "smart cast"--inside this block,
+      // "body" is a reference to Human, not Mammal
+      // so no explicit cast required
+  }
 }
 val human = Human("Ted")
 val bear = Bear()
-offerBeer(human)
-offerBeer(bear) // Exception!
+offerBeer(human)    // "Here, have a beer, Ted"
+offerBeer(bear)     // No exception, nothing prints
 // {{## END casts-1 ##}}
 
 // {{## BEGIN casts-2 ##}}
 fun offerWhiskey(body : Mammal) {
   body as Human 
+  // or we could write as
+  val whiskeyDrinker = body as? Human
 }
-offerWhiskey(human)
+offerWhiskey(human) // cast works without issue
 //offerWhiskey(bear)
   /*
   Exception! java.lang.ClassCastException: class Inheritance$Bear cannot be cast to class Inheritance$Human
